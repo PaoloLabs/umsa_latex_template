@@ -1,0 +1,102 @@
+\documentclass[11pt,oneside,letterpaper]{book}
+
+% ================= PREÁMBULO =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{lipsum}
+\usepackage{mathptmx} % Usa Times New Roman como fuente principal
+\usepackage{graphicx}
+
+% Bibliografía
+\usepackage{csquotes} % Recomendado por biblatex
+\usepackage[style=apa, backend=biber, language=spanish]{biblatex}
+\addbibresource{referencias.bib}
+
+% Márgenes y espaciado
+\geometry{letterpaper, left=40mm, right=25mm, top=30mm, bottom=25mm, headsep=20mm}
+\setstretch{1.5}
+
+% Ruta para imagenes
+\graphicspath{{images/}}
+
+% Cabecera
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+
+% ================= DOCUMENTO =================
+\begin{document}
+
+	% CARÁTULA
+	\thispagestyle{empty}
+	\begin{center}
+		\Large{\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS}} \\
+		\large{\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES}} \\
+		\large{\textbf{POSTGRADO EN INFORMÁTICA}} \\
+		\vspace{0.5cm}
+		\large{\textbf{DIPLOMADO EN EDUCACIÓN SUPERIOR CON APLICACIÓN DE TECNOLOGÍAS EMERGENTES E INTELIGENCIA ARTIFICIAL}} \\
+		\large{\textbf{MODALIDAD VIRTUAL}} \\
+		\large{\textbf{GESTIÓN 2024 - 2025}} \\
+		\begin{center}
+			\includegraphics[width=4cm]{logo_umsa.png}
+		\end{center}
+		\vspace{0.5cm}
+		\large{\textbf{MONOGRAFÍA DE GRADO}} \\
+		\large{\textbf{TECNOLOGÍAS EMERGENTES EN INTELIGENCIA ARTIFICIAL GENERATIVA Y REALIDAD AUMENTADA}} \\
+		\large{\textbf{PARA EL DESARROLLO DE COMPETENCIAS DIGITALES}} \\
+		\large{\textbf{EN LA FACULTAD DE HUMANIDADES DE LA UNIVERSIDAD MAYOR DE SAN SIMÓN}} \\
+		\vspace{0.5cm}
+		\textbf{POR:} LIC. CHRISTIAN ESCOBAR ESCOBAR \\
+		\textbf{TUTOR:} M. SC. MARCELO PALMA SALAS \\
+		LA PAZ – BOLIVIA \\
+		Mayo, 2025
+	\end{center}
+
+	\newpage
+	\thispagestyle{empty}
+	\renewcommand{\contentsname}{ÍNDICE}
+	\tableofcontents
+
+	\newpage
+	\section*{Resumen}
+	\addcontentsline{toc}{section}{Resumen}
+	Esta monografía aborda la integración de tecnologías emergentes, específicamente la inteligencia artificial generativa y la realidad aumentada... [resumen truncado para brevedad]
+
+	\textbf{Palabras clave:} Tecnologías emergentes, inteligencia artificial generativa, realidad aumentada, competencias digitales, educación superior.
+
+
+	\newpage
+	\section*{Abstract}
+	\addcontentsline{toc}{section}{Abstract}
+	This monograph addresses the integration of emerging technologies, specifically generative artificial intelligence and augmented reality... [abstract truncado para brevedad]
+
+	\textbf{Keywords:} Emerging technologies, generative artificial intelligence, augmented reality, digital skills, higher education.
+
+	\newpage
+	\chapter{Introducción}
+	La educación, como pilar fundamental del desarrollo humano, ha experimentado transformaciones en las últimas décadas... [introducción truncada para brevedad]
+
+	\chapter{Marco Teórico}
+	\lipsum[1-2]
+	Ejemplo de cita con autor en el texto: \textcite{perez2021educacion}.\\
+	Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
+
+	\chapter{Marco Aplicativo}
+	\lipsum[1-2]
+
+	\chapter{Conclusiones y Recomendaciones}
+	\lipsum[1-2]
+
+	\chapter{Bibliografía}
+	\lipsum[1]
+	\printbibliography
+
+\end{document}
+	
