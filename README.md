@@ -81,7 +81,7 @@ Esto generará el archivo `main.pdf` con las citas y bibliografía correctamente
 - Cita narrativa:
 
   ```latex
-  	extcite{perez2021} analiza el impacto de la tecnología en la educación.
+  \textcite{perez2021} analiza el impacto de la tecnología en la educación.
   ```
 
 - Cita entre paréntesis:
@@ -99,6 +99,23 @@ Coloca tus imágenes en la carpeta `images/` y usa rutas relativas como esta:
 ```latex
 \includegraphics[width=4cm]{images/logo_umsa.png}
 ```
+
+---
+
+## 🌐 Uso en Overleaf
+
+Si no deseas instalar LaTeX localmente, puedes compilar esta plantilla en línea utilizando [Overleaf](https://www.overleaf.com), una plataforma gratuita para editar documentos LaTeX en la nube.
+
+### Instrucciones:
+
+1. Crea una cuenta gratuita en [overleaf.com](https://www.overleaf.com).
+2. Haz clic en **"New Project" > "Upload Project"**.
+3. Carga todo el contenido de la carpeta `umsa_latex_template/`, incluyendo el archivo `main.tex`, `bibliography.bib` y la carpeta `images/`.
+4. Asegúrate de que el archivo principal sea `main.tex`.
+5. En el menú superior, selecciona **"Compiler"** y elige `XeLaTeX` o `pdfLaTeX`.
+6. Haz clic en **"Recompile"** para generar el PDF.
+
+Puedes revisar el resultado final en el archivo `main.pdf` incluido en este repositorio como referencia.
 
 ---
 
