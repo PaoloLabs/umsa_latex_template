@@ -9,15 +9,17 @@
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{titlesec}
-\usepackage{tocloft}
+\usepackage{tocloft}    % Para personalizar el índice
 \usepackage{lipsum}
+%\usepackage{hyperref} % indice con links visibles para latex (descomenta para debug) %
+\usepackage[hidelinks]{hyperref}  % indice con links ocultos para convertir a PDF final %
 \usepackage{mathptmx} % Usa Times New Roman como fuente principal
 \usepackage{graphicx}
 
 % Bibliografía
 \usepackage{csquotes} % Recomendado por biblatex
 \usepackage[style=apa, backend=biber, language=spanish]{biblatex}
-\addbibresource{referencias.bib}
+\addbibresource{bibliography.bib}
 
 % Márgenes y espaciado
 \geometry{letterpaper, left=40mm, right=25mm, top=30mm, bottom=25mm, headsep=20mm}
@@ -26,14 +28,44 @@
 % Ruta para imagenes
 \graphicspath{{images/}}
 
+% Mostrar "CAPÍTULO" en mayúsculas
+\renewcommand{\chaptername}{CAPÍTULO}
+
+% Usar números romanos para los capítulos
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+% Secciones en formato arábigo (e.g., 4.1)
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+
+% Formato visual del título del capítulo en el documento
+\titleformat{\chapter}[block]
+  {\normalfont\bfseries\Large}
+  {CAPÍTULO \thechapter\-}{1em}{}
+
+% ========= Personalización del índice =========
+
+% Poner "CAPÍTULO I -" como parte de la numeración
+\renewcommand{\cftchappresnum}{CAPÍTULO }  % Usamos \Roman{chapter} aquí también
+
+% Quita el número automático (ya lo incluimos en el presnum)
+\renewcommand{\cftchapaftersnum}{\quad}
+
+% Define espacio suficiente para el texto "CAPÍTULO I -"
+\renewcommand{\cftchapnumwidth}{8em}
+
 % Cabecera
 \pagestyle{fancy}
 \fancyhf{}
+% \fancyhead[R]{\thepage} % Número de página en la esquina superior derecha
 \rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Quita línea del encabezado
+\renewcommand{\footrulewidth}{0pt} % Quita línea del pie
+
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
 
 % ================= DOCUMENTO =================
 \begin{document}
-
+        \pagenumbering{gobble} % quita numeracion
 	% CARÁTULA
 	\thispagestyle{empty}
 	\begin{center}
@@ -41,62 +73,135 @@
 		\large{\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES}} \\
 		\large{\textbf{POSTGRADO EN INFORMÁTICA}} \\
 		\vspace{0.5cm}
-		\large{\textbf{DIPLOMADO EN EDUCACIÓN SUPERIOR CON APLICACIÓN DE TECNOLOGÍAS EMERGENTES E INTELIGENCIA ARTIFICIAL}} \\
-		\large{\textbf{MODALIDAD VIRTUAL}} \\
+		\large{\textbf{DIPLOMADO EN ANÁLISIS DE DATOS Y BUSINESS INTELLIGENCE}} \\
+		\vspace{0.5cm}
+            \large{\textbf{MODALIDAD VIRTUAL}} \\
 		\large{\textbf{GESTIÓN 2024 - 2025}} \\
 		\begin{center}
 			\includegraphics[width=4cm]{logo_umsa.png}
 		\end{center}
 		\vspace{0.5cm}
 		\large{\textbf{MONOGRAFÍA DE GRADO}} \\
-		\large{\textbf{TECNOLOGÍAS EMERGENTES EN INTELIGENCIA ARTIFICIAL GENERATIVA Y REALIDAD AUMENTADA}} \\
-		\large{\textbf{PARA EL DESARROLLO DE COMPETENCIAS DIGITALES}} \\
-		\large{\textbf{EN LA FACULTAD DE HUMANIDADES DE LA UNIVERSIDAD MAYOR DE SAN SIMÓN}} \\
+		\vspace{0.2cm}
+		\large{\textbf{MI TITULO \\
+            SEGUNDA LINEA TITULO}} \\
 		\vspace{0.5cm}
-		\textbf{POR:} LIC. CHRISTIAN ESCOBAR ESCOBAR \\
+		\textbf{POR:} LIC. TU NOMBRE \\
 		\textbf{TUTOR:} M. SC. MARCELO PALMA SALAS \\
+		\vspace{0.5cm}
 		LA PAZ – BOLIVIA \\
 		Mayo, 2025
 	\end{center}
 
 	\newpage
 	\thispagestyle{empty}
-	\renewcommand{\contentsname}{ÍNDICE}
-	\tableofcontents
+        \renewcommand{\cftchapdotsep}{\cftdotsep} % activa puntos suspensivos para capítulos
+	   	\renewcommand{\contentsname}{ÍNDICE}
+        % Cambia el tamaño del título del índice
+        \renewcommand{\cfttoctitlefont}{\large\bfseries}  % o \Large, \normalsize, etc.
+        \tableofcontents
 
 	\newpage
-	\section*{Resumen}
-	\addcontentsline{toc}{section}{Resumen}
-	Esta monografía aborda la integración de tecnologías emergentes, específicamente la inteligencia artificial generativa y la realidad aumentada... [resumen truncado para brevedad]
+        \pagenumbering{roman} % ← Numeración romana (i, ii, iii)
+	\vspace*{\fill}
+            \begin{center}
+	            \textbf{Resumen}
+            \end{center}
+	    	\lipsum[1]
 
-	\textbf{Palabras clave:} Tecnologías emergentes, inteligencia artificial generativa, realidad aumentada, competencias digitales, educación superior.
+			\vspace{1em}
+			\textbf{Palabras clave:} Tecnologías emergentes, inteligencia artificial generativa, realidad aumentada, competencias digitales, educación superior.
 
-
-	\newpage
-	\section*{Abstract}
-	\addcontentsline{toc}{section}{Abstract}
-	This monograph addresses the integration of emerging technologies, specifically generative artificial intelligence and augmented reality... [abstract truncado para brevedad]
-
-	\textbf{Keywords:} Emerging technologies, generative artificial intelligence, augmented reality, digital skills, higher education.
+        \vspace*{\fill}
 
 	\newpage
-	\chapter{Introducción}
+        \vspace*{\fill}
+            \begin{center}
+	            \textbf{Abstract}
+            \end{center}
+    		\lipsum[1]
+
+			\vspace{1em}
+			\textbf{Keywords:} Emerging technologies, generative artificial intelligence, augmented reality, digital skills, higher education.
+
+        \vspace*{\fill}
+
+    \newpage
+    \pagenumbering{arabic}
+	\chapter{MARCO INTRODUCTORIO}
 	La educación, como pilar fundamental del desarrollo humano, ha experimentado transformaciones en las últimas décadas... [introducción truncada para brevedad]
+        \section{Antecedentes del problema}
+        \lipsum[1]
 
-	\chapter{Marco Teórico}
+        \section{Problema de Investigación}
+        \lipsum[1]
+
+        \section{Formulación del Problema}
+        ¿EJEMPLO DE PREGUNTA De qué manera los docentes pueden integrar Inteligencia Artificial Generativa y Realidad Aumentada en las aulas de Humanidades para mejorar la calidad del aprendizaje estudiantil?
+
+        \section{Justificación}
+        \lipsum[1]
+
+            \subsection{Justificación Teórica}
+            \lipsum[1]
+
+            \subsection{Justificación Práctica}
+            \lipsum[1]
+
+            \subsection{Pertinencia Social}
+            \lipsum[1]
+
+        \section{Objeto de Estudio}
+        \lipsum[1]
+
+        \section{Objetivos}
+        \lipsum[1]
+
+            \subsection{Objetivo General}
+            \lipsum[1]
+
+            \subsection{Objetivos Específicos}
+            \lipsum[1]
+
+        \section{Alcances y Límites}
+        \lipsum[1]
+
+            \subsection{Alcances}
+            \lipsum[1]
+
+            \subsection{Límites}
+            \lipsum[1]
+
+	\chapter{MARCO TEÓRICO}
 	\lipsum[1-2]
 	Ejemplo de cita con autor en el texto: \textcite{perez2021educacion}.\\
 	Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
+        \section{teórico 1}
+        \lipsum[1]
 
-	\chapter{Marco Aplicativo}
-	\lipsum[1-2]
+        \section{teórico 2}
+        \lipsum[1]
 
-	\chapter{Conclusiones y Recomendaciones}
-	\lipsum[1-2]
-
-	\chapter{Bibliografía}
+	\chapter{MARCO APLICATIVO}
 	\lipsum[1]
-	\printbibliography
+
+        \section{aplicativo 1}
+        \lipsum[1]
+
+        \section{aplicativo 2}
+        \lipsum[1]
+
+	\chapter{CONCLUSIONES Y RECOMENDACIONES}
+
+        \section{Conclusiones}
+        \lipsum[1]
+
+        \section{Recomendaciones}
+        \lipsum[1]
+
+        \printbibliography[
+          heading=bibintoc,         % Agrega al índice
+          title={BIBLIOGRAFÍA}      % Cambia el título
+        ]
 
 \end{document}
-	
