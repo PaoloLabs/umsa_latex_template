@@ -11,197 +11,245 @@
 \usepackage{titlesec}
 \usepackage{tocloft}    % Para personalizar el índice
 \usepackage{lipsum}
-%\usepackage{hyperref} % indice con links visibles para latex (descomenta para debug) %
-\usepackage[hidelinks]{hyperref}  % indice con links ocultos para convertir a PDF final %
+\usepackage[hidelinks]{hyperref}  % Índice con links ocultos para el PDF final
 \usepackage{mathptmx} % Usa Times New Roman como fuente principal
-\usepackage{graphicx}
 
 % Bibliografía
 \usepackage{csquotes} % Recomendado por biblatex
 \usepackage[style=apa, backend=biber, language=spanish]{biblatex}
-\addbibresource{bibliography.bib}
+\addbibresource{referencias.bib}
 
-% Márgenes y espaciado
-\geometry{letterpaper, left=40mm, right=25mm, top=30mm, bottom=25mm, headsep=20mm}
-\setstretch{1.5}
+% Márgenes y espaciado según APA (ajusta left=30mm si tu universidad lo exige)
+\geometry{
+    letterpaper,
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm,
+    headsep=10mm
+}
+\setlength{\headheight}{15pt}
+\setstretch{1.5} % Usa 2 si exigen doble espacio exacto
 
-% Ruta para imagenes
+% Ruta para imágenes
 \graphicspath{{images/}}
 
-% Mostrar "CAPÍTULO" en mayúsculas
+% Mostrar "CAPÍTULO" en mayúsculas y números romanos para capítulos
 \renewcommand{\chaptername}{CAPÍTULO}
-
-% Usar números romanos para los capítulos
 \renewcommand{\thechapter}{\Roman{chapter}}
 
-% Secciones en formato arábigo (e.g., 4.1)
+% Secciones numeradas como 1.1, 1.2, etc.
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
 
-% Formato visual del título del capítulo en el documento
+% Formato visual del título del capítulo
 \titleformat{\chapter}[block]
   {\normalfont\bfseries\Large}
   {CAPÍTULO \thechapter\-}{1em}{}
 
 % ========= Personalización del índice =========
-
-% Poner "CAPÍTULO I -" como parte de la numeración
-\renewcommand{\cftchappresnum}{CAPÍTULO }  % Usamos \Roman{chapter} aquí también
-
-% Quita el número automático (ya lo incluimos en el presnum)
+\renewcommand{\cftchappresnum}{CAPÍTULO }
 \renewcommand{\cftchapaftersnum}{\quad}
-
-% Define espacio suficiente para el texto "CAPÍTULO I -"
 \renewcommand{\cftchapnumwidth}{8em}
 
-% Cabecera
+% ========= Encabezado APA =========
 \pagestyle{fancy}
 \fancyhf{}
-% \fancyhead[R]{\thepage} % Número de página en la esquina superior derecha
-\rfoot{\thepage}
-\renewcommand{\headrulewidth}{0pt} % Quita línea del encabezado
-\renewcommand{\footrulewidth}{0pt} % Quita línea del pie
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+% Espaciado visual del título de capítulo
+\titlespacing*{\chapter}{0pt}{-30pt}{30pt} % Ajusta -10pt según gusto visual
 
 % ================= DOCUMENTO =================
 \begin{document}
-        \pagenumbering{gobble} % quita numeracion
-	% CARÁTULA
-	\thispagestyle{empty}
-	\begin{center}
-		\Large{\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS}} \\
-		\large{\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES}} \\
-		\large{\textbf{POSTGRADO EN INFORMÁTICA}} \\
-		\vspace{0.5cm}
-		\large{\textbf{DIPLOMADO EN ANÁLISIS DE DATOS Y BUSINESS INTELLIGENCE}} \\
-		\vspace{0.5cm}
-            \large{\textbf{MODALIDAD VIRTUAL}} \\
-		\large{\textbf{GESTIÓN 2024 - 2025}} \\
-		\begin{center}
-			\includegraphics[width=4cm]{logo_umsa.png}
-		\end{center}
-		\vspace{0.5cm}
-		\large{\textbf{MONOGRAFÍA DE GRADO}} \\
-		\vspace{0.2cm}
-		\large{\textbf{MI TITULO \\
-            SEGUNDA LINEA TITULO}} \\
-		\vspace{0.5cm}
-		\textbf{POR:} LIC. TU NOMBRE \\
-		\textbf{TUTOR:} M. SC. MARCELO PALMA SALAS \\
-		\vspace{0.5cm}
-		LA PAZ – BOLIVIA \\
-		Mayo, 2025
-	\end{center}
+\pagenumbering{gobble}
 
-	\newpage
-	\thispagestyle{empty}
-        \renewcommand{\cftchapdotsep}{\cftdotsep} % activa puntos suspensivos para capítulos
-	   	\renewcommand{\contentsname}{ÍNDICE}
-        % Cambia el tamaño del título del índice
-        \renewcommand{\cfttoctitlefont}{\large\bfseries}  % o \Large, \normalsize, etc.
-        \tableofcontents
+% ============ PORTADA =============
+\thispagestyle{empty}
+\begin{center}
+	\Large\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS} \\
+	\large\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES} \\
+	\large\textbf{POSTGRADO EN INFORMÁTICA} \\
+	\vspace{0.5cm}
+	\large\textbf{DIPLOMADO EN ANÁLISIS DE DATOS Y BUSINESS INTELLIGENCE} \\
+	\vspace{0.5cm}
+	\large\textbf{MODALIDAD VIRTUAL} \\
+	\large\textbf{GESTIÓN 2024 - 2025} \\
+	\vspace{0.5cm}
+	\includegraphics[width=4cm]{logo_umsa.png}
+	\vspace{0.5cm}
+	
+	\large\textbf{MONOGRAFÍA DE GRADO} \\
+	\vspace{0.2cm}
+	\large\textbf{MI TÍTULO \\
+			SEGUNDA LINEA TITULO} \\
+	\vspace{0.5cm}
+	\textbf{POR:} LIC. TU NOMBRE \\
+	\textbf{TUTOR:} M. SC. MARCELO PALMA SALAS \\
+	\vspace{0.5cm}
+	LA PAZ – BOLIVIA \\
+	Mayo, 2025
+\end{center}
 
-	\newpage
-        \pagenumbering{roman} % ← Numeración romana (i, ii, iii)
-	\vspace*{\fill}
-            \begin{center}
-	            \textbf{Resumen}
-            \end{center}
-	    	\lipsum[1]
+% ============ ÍNDICE =============
+\newpage
+\thispagestyle{empty}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\contentsname}{ÍNDICE}
+\renewcommand{\cfttoctitlefont}{\large\bfseries}
+\tableofcontents
 
-			\vspace{1em}
-			\textbf{Palabras clave:} Tecnologías emergentes, inteligencia artificial generativa, realidad aumentada, competencias digitales, educación superior.
+% ============ RESUMEN Y ABSTRACT ============
+\newpage
+\pagenumbering{roman}
+\vspace*{\fill}
+\begin{center}
+	\textbf{Resumen}
+\end{center}
+\lipsum[1]
+\vspace{1em}
+\textbf{Palabras clave:} Tecnologías emergentes, inteligencia artificial generativa, realidad aumentada, competencias digitales, educación superior.
+\vspace*{\fill}
 
-        \vspace*{\fill}
+\newpage
+\vspace*{\fill}
+\begin{center}
+	\textbf{Abstract}
+\end{center}
+\lipsum[1]
+\vspace{1em}
+\textbf{Keywords:} Emerging technologies, generative artificial intelligence, augmented reality, digital skills, higher education.
+\vspace*{\fill}
 
-	\newpage
-        \vspace*{\fill}
-            \begin{center}
-	            \textbf{Abstract}
-            \end{center}
-    		\lipsum[1]
+% ============ CAPÍTULO I: MARCO INTRODUCTORIO =============
+\newpage
+\pagenumbering{arabic}
+\thispagestyle{empty}
+\vspace*{0.35\textheight}
+\begin{center}
+	{\Huge\textbf{CAPÍTULO I}} \\[0.5cm]
+	{\Huge\textbf{MARCO INTRODUCTORIO}}
+\end{center}
+\newpage
+\thispagestyle{fancy}
 
-			\vspace{1em}
-			\textbf{Keywords:} Emerging technologies, generative artificial intelligence, augmented reality, digital skills, higher education.
+% Si quieres que "INTRODUCCIÓN" esté centrado y en el índice:
+\section*{}
+\begin{center}
+	\Large \textbf{INTRODUCCIÓN}
+\end{center}
+\addcontentsline{toc}{section}{Introducción}
 
-        \vspace*{\fill}
+\chapter{MARCO INTRODUCTORIO}
+\thispagestyle{fancy}
 
-    \newpage
-    \pagenumbering{arabic}
-	\chapter{MARCO INTRODUCTORIO}
-	La educación, como pilar fundamental del desarrollo humano, ha experimentado transformaciones en las últimas décadas... [introducción truncada para brevedad]
-        \section{Antecedentes del problema}
-        \lipsum[1]
+% ============ SECCIONES Y SUBSECCIONES ============
+\section{Planteamiento del Problema}
+La educación, como pilar fundamental del desarrollo humano, ha experimentado transformaciones en las últimas décadas...
 
-        \section{Problema de Investigación}
-        \lipsum[1]
+\section{Antecedentes del problema}
+\lipsum[1]
 
-        \section{Formulación del Problema}
-        ¿EJEMPLO DE PREGUNTA De qué manera los docentes pueden integrar Inteligencia Artificial Generativa y Realidad Aumentada en las aulas de Humanidades para mejorar la calidad del aprendizaje estudiantil?
+\section{Problema de Investigación}
+\lipsum[1]
 
-        \section{Justificación}
-        \lipsum[1]
+\section{Formulación del Problema}
+¿EJEMPLO DE PREGUNTA De qué manera los docentes pueden integrar Inteligencia Artificial Generativa y Realidad Aumentada en las aulas de Humanidades para mejorar la calidad del aprendizaje estudiantil?
 
-            \subsection{Justificación Teórica}
-            \lipsum[1]
+\section{Justificación}
+\lipsum[1]
 
-            \subsection{Justificación Práctica}
-            \lipsum[1]
+\subsection{Justificación Teórica}
+\lipsum[1]
 
-            \subsection{Pertinencia Social}
-            \lipsum[1]
+\subsection{Justificación Práctica}
+\lipsum[1]
 
-        \section{Objeto de Estudio}
-        \lipsum[1]
+\subsection{Pertinencia Social}
+\lipsum[1]
 
-        \section{Objetivos}
-        \lipsum[1]
+\section{Objeto de Estudio}
+\lipsum[1]
 
-            \subsection{Objetivo General}
-            \lipsum[1]
+\section{Objetivos}
+\lipsum[1]
 
-            \subsection{Objetivos Específicos}
-            \lipsum[1]
+\subsection{Objetivo General}
+\lipsum[1]
 
-        \section{Alcances y Límites}
-        \lipsum[1]
+\subsection{Objetivos Específicos}
+\lipsum[1]
 
-            \subsection{Alcances}
-            \lipsum[1]
+\section{Alcances y Límites}
+\lipsum[1]
 
-            \subsection{Límites}
-            \lipsum[1]
+\subsection{Alcances}
+\lipsum[1]
 
-	\chapter{MARCO TEÓRICO}
-	\lipsum[1-2]
-	Ejemplo de cita con autor en el texto: \textcite{perez2021educacion}.\\
-	Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
-        \section{teórico 1}
-        \lipsum[1]
+\subsection{Límites}
+\lipsum[1]
 
-        \section{teórico 2}
-        \lipsum[1]
+% ============ SIGUIENTES CAPÍTULOS (estructura igual) ============
+\newpage
+\thispagestyle{empty}
+\vspace*{0.35\textheight}
+\begin{center}
+	{\Huge\textbf{CAPÍTULO II}} \\[0.5cm]
+	{\Huge\textbf{MARCO TEÓRICO}}
+\end{center}
 
-	\chapter{MARCO APLICATIVO}
-	\lipsum[1]
+\newpage
+\chapter{MARCO TEÓRICO}
+\thispagestyle{fancy}
+\section{teórico 1}
+\lipsum[1]
+Ejemplo de cita con autor en el texto: \textcite{perez2021educacion}.\\
+Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
 
-        \section{aplicativo 1}
-        \lipsum[1]
+\section{teórico 2}
+\lipsum[1]
 
-        \section{aplicativo 2}
-        \lipsum[1]
+\newpage
+\thispagestyle{empty}
+\vspace*{0.35\textheight}
+\begin{center}
+	{\Huge\textbf{CAPÍTULO III}} \\[0.5cm]
+	{\Huge\textbf{MARCO APLICATIVO}}
+\end{center}
 
-	\chapter{CONCLUSIONES Y RECOMENDACIONES}
+\newpage
+\chapter{MARCO APLICATIVO}
+\thispagestyle{fancy}
 
-        \section{Conclusiones}
-        \lipsum[1]
+\section{aplicativo 1}
+\lipsum[1]
 
-        \section{Recomendaciones}
-        \lipsum[1]
+\section{aplicativo 2}
+\lipsum[1]
 
-        \printbibliography[
-          heading=bibintoc,         % Agrega al índice
-          title={BIBLIOGRAFÍA}      % Cambia el título
-        ]
+\newpage
+\thispagestyle{empty}
+\vspace*{0.35\textheight}
+\begin{center}
+	{\Huge\textbf{CAPÍTULO IV}} \\[0.5cm]
+	{\Huge\textbf{CONCLUSIONES Y RECOMENDACIONES}}
+\end{center}
+
+\newpage
+\chapter{CONCLUSIONES Y RECOMENDACIONES}
+\thispagestyle{fancy}
+
+\section{Conclusiones}
+\lipsum[1]
+
+\section{Recomendaciones}
+\lipsum[1]
+
+% ============ BIBLIOGRAFÍA ============
+\printbibliography[
+	heading=bibintoc,
+	title={BIBLIOGRAFÍA}
+]
 
 \end{document}
