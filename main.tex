@@ -1,4 +1,4 @@
-\documentclass[11pt,oneside,letterpaper]{book}
+\documentclass[12pt,oneside,letterpaper]{book}
 
 % ================= PREÁMBULO =================
 \usepackage[utf8]{inputenc}
@@ -8,11 +8,14 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{float}
 \usepackage{titlesec}
 \usepackage{tocloft}    % Para personalizar el índice
 \usepackage{lipsum}
 \usepackage[hidelinks]{hyperref}  % Índice con links ocultos para el PDF final
 \usepackage{mathptmx} % Usa Times New Roman como fuente principal
+\usepackage{caption} % <--- Aquí
+\captionsetup{font=small, labelfont=bf, justification=centering}
 
 % Bibliografía
 \usepackage{csquotes} % Recomendado por biblatex
@@ -43,8 +46,25 @@
 
 % Formato visual del título del capítulo
 \titleformat{\chapter}[block]
-  {\normalfont\bfseries\Large}
-  {CAPÍTULO \thechapter\-}{1em}{}
+  {\normalfont\bfseries\large}
+  {CAPÍTULO \thechapter\-}
+  {1em}
+  {}
+
+  \usepackage{titlesec} % ya lo tienes
+
+\titleformat{\section}
+  {\normalfont\bfseries\large}   % ← Estilo de la sección: tamaño large y en negrita
+  {\thesection}                  % ← Muestra el número (por ejemplo 1.1)
+  {1em}                          % ← Espacio entre el número y el título
+  {}                             % ← Antes del título, puedes poner algo si quieres
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\large}
+  {\thesubsection}
+  {1em}
+  {}
+
 
 % ========= Personalización del índice =========
 \renewcommand{\cftchappresnum}{CAPÍTULO }
@@ -68,7 +88,7 @@
 % ============ PORTADA =============
 \thispagestyle{empty}
 \begin{center}
-	\Large\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS} \\
+	\large\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS} \\
 	\large\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES} \\
 	\large\textbf{POSTGRADO EN INFORMÁTICA} \\
 	\vspace{0.5cm}
@@ -82,7 +102,7 @@
 	
 	\large\textbf{MONOGRAFÍA DE GRADO} \\
 	\vspace{0.2cm}
-	\large\textbf{MI TÍTULO \\
+	\normalsize\textbf{MI TÍTULO \\
 			SEGUNDA LINEA TITULO} \\
 	\vspace{0.5cm}
 	\textbf{POR:} LIC. TU NOMBRE \\
@@ -99,6 +119,22 @@
 \renewcommand{\contentsname}{ÍNDICE}
 \renewcommand{\cfttoctitlefont}{\large\bfseries}
 \tableofcontents
+
+% ============ ÍNDICE DE TABLAS =============
+\newpage
+\thispagestyle{empty}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\cftlottitlefont}{\large\bfseries}
+\renewcommand{\cfttabdotsep}{\cftdotsep}
+\listoftables
+
+% ============ ÍNDICE DE IMÁGENES =============
+\newpage
+\thispagestyle{empty}
+\renewcommand{\listfigurename}{ÍNDICE DE IMÁGENES}
+\renewcommand{\cftloftitlefont}{\large\bfseries}
+\renewcommand{\cftfigdotsep}{\cftdotsep}
+\listoffigures
 
 % ============ RESUMEN Y ABSTRACT ============
 \newpage
@@ -131,7 +167,7 @@
 % Si quieres que "INTRODUCCIÓN" esté centrado y en el índice:
 \section*{}
 \begin{center}
-	\Large \textbf{INTRODUCCIÓN}
+	\large \textbf{INTRODUCCIÓN}
 \end{center}
 \addcontentsline{toc}{section}{Introducción}
 
@@ -204,6 +240,14 @@ Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
 \section{teórico 2}
 \lipsum[1]
 
+\section{Ejemplo de Imagen}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{images/logo_umsa.png} % Reemplaza con el nombre de tu imagen
+\caption{Ejemplo de imagen ilustrativa}
+\label{fig:ejemplo1}
+\end{figure}
+
 \newpage
 \thispagestyle{empty}
 \vspace*{0.35\textheight}
@@ -218,9 +262,22 @@ Ejemplo de cita entre paréntesis: \parencite{smith2020ai}.
 
 \section{aplicativo 1}
 \lipsum[1]
+\section{Ejemplo de Tabla}
 
-\section{aplicativo 2}
-\lipsum[1]
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|r|}
+\hline
+Nombre & Edad & Ciudad \\
+\hline
+Ana & 25 & La Paz \\
+Carlos & 30 & Cochabamba \\
+Luisa & 28 & Santa Cruz \\
+\hline
+\end{tabular}
+\caption{Ejemplo de tabla con datos ficticios}
+\label{tab:ejemplo1}
+\end{table}
 
 \newpage
 \thispagestyle{empty}
