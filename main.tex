@@ -1,85 +1,100 @@
+% ==================== CLASE DEL DOCUMENTO ====================
 \documentclass[12pt,oneside,letterpaper]{book}
 
-% ================= PREÁMBULO =================
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
-\usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{fancyhdr}
-\usepackage{setspace}
-\usepackage{float}
-\usepackage{titlesec}
-\usepackage{tocloft}    % Para personalizar el índice
-\usepackage{lipsum}
-\usepackage[hidelinks]{hyperref}  % Índice con links ocultos para el PDF final
-\usepackage{mathptmx} % Usa Times New Roman como fuente principal
-\usepackage{caption} % <--- Aquí
-\captionsetup{font=small, labelfont=bf, justification=centering}
+% ==================== PAQUETES BÁSICOS ====================
+\usepackage[utf8]{inputenc}           % Codificación de entrada
+\usepackage[T1]{fontenc}              % Codificación de fuente
+\usepackage[spanish]{babel}           % Traducción de términos automáticos
+\usepackage{geometry}                 % Configuración de márgenes
+\usepackage{graphicx}                 % Inclusión de imágenes
+\usepackage{float}                    % Mejor control de ubicación de figuras/tablas
+\usepackage{setspace}                 % Interlineado
+\usepackage{fancyhdr}                 % Encabezados y pies de página
+\usepackage{titlesec}                 % Formato de títulos de capítulos/secciones
+\usepackage{tocloft}                  % Personalización del índice
+\usepackage{caption}                  % Estilo de captions
+\usepackage{lipsum}                   % Texto de prueba
+\usepackage[hidelinks]{hyperref}     % Enlaces sin color
+\usepackage{mathptmx}                 % Fuente Times New Roman
 
-% Bibliografía
-\usepackage{csquotes} % Recomendado por biblatex
-\usepackage[style=apa, backend=biber, language=spanish]{biblatex}
-\addbibresource{bibliography.bib}
-
-% Márgenes y espaciado según APA (ajusta left=30mm si tu universidad lo exige)
-\geometry{
-    letterpaper,
-    left=30mm, % Recomendado si es para empastado físico (consulta si es necesario)
-    right=25.4mm,
-    top=25.4mm,
-    bottom=25.4mm,
-    headsep=10mm
+% ==================== CONFIGURACIÓN DE CAPTIONS ====================
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  justification=centering
 }
-\setlength{\headheight}{15pt}
-\setstretch{1.5} % Usa 2 si exigen doble espacio exacto
 
-% Ruta para imágenes
-\graphicspath{{images/}}
+% ==================== BIBLIOGRAFÍA (APA) ====================
+\usepackage{csquotes}                 % Recomendado por biblatex
+\usepackage[style=apa, backend=biber, language=spanish]{biblatex}
+\addbibresource{bibliography.bib}    % Archivo .bib con referencias
 
-% Mostrar "CAPÍTULO" en mayúsculas y números romanos para capítulos
-\renewcommand{\chaptername}{CAPÍTULO}
-\renewcommand{\thechapter}{\Roman{chapter}}
+% ==================== MÁRGENES Y ESPACIADO ====================
+\geometry{
+  letterpaper,
+  left=30mm,      % Recomendado si requiere empastado
+  right=25.4mm,
+  top=25.4mm,
+  bottom=25.4mm,
+  headsep=10mm
+}
+\setlength{\headheight}{15pt}        % Altura del encabezado
+\setstretch{1.5}                      % Interlineado 1.5 para APA
 
-% Secciones numeradas como 1.1, 1.2, etc.
-\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+% ==================== IMÁGENES ====================
+\graphicspath{{images/}}             % Carpeta por defecto para imágenes
 
-% Formato visual del título del capítulo
+% ==================== TÍTULOS Y SECCIONES ====================
+\renewcommand{\chaptername}{CAPÍTULO}    % Nombre de capítulo en mayúsculas
+\renewcommand{\thechapter}{\Roman{chapter}} % Números romanos
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} % Secciones tipo 1.1
+
+% Formato de capítulos
 \titleformat{\chapter}[block]
-  {\normalfont\bfseries\large}
-  {CAPÍTULO \thechapter\-}
-  {1em}
-  {}
+  {
+\normalfont\bfseries\normalsize}  % Estilo de texto del título
+  {CAPÍTULO \thechapter\-}            % Prefijo del capítulo
+  {1em}{}
 
-  \usepackage{titlesec} % ya lo tienes
-
+% Formato de secciones
 \titleformat{\section}
-  {\normalfont\bfseries\large}   % ← Estilo de la sección: tamaño large y en negrita
-  {\thesection}                  % ← Muestra el número (por ejemplo 1.1)
-  {1em}                          % ← Espacio entre el número y el título
-  {}                             % ← Antes del título, puedes poner algo si quieres
+  {
+\normalfont\bfseries\normalsize}
+  {\thesection}{1em}{}
 
+% Formato de subsecciones
 \titleformat{\subsection}
-  {\normalfont\bfseries\large}
-  {\thesubsection}
-  {1em}
-  {}
+  {
+\normalfont\bfseries\normalsize}
+  {\thesubsection}{1em}{}
 
+% Espaciado vertical para capítulos
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt} % Ajusta -20pt según se requiera
 
-% ========= Personalización del índice =========
+% Espaciado reducido para título del índice
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\tableofcontents}{\@starttoc{toc}}{\vspace*{-1.5cm}\@starttoc{toc}}{}{}
+\patchcmd{\listoftables}{\@starttoc{lot}}{\vspace*{-1.5cm}\@starttoc{lot}}{}{}
+\patchcmd{\listoffigures}{\@starttoc{lof}}{\vspace*{-1.5cm}\@starttoc{lof}}{}{}
+\makeatother
+
+% ==================== ÍNDICE PERSONALIZADO ====================
 \renewcommand{\cftchappresnum}{CAPÍTULO }
 \renewcommand{\cftchapaftersnum}{\quad}
 \renewcommand{\cftchapnumwidth}{8em}
 
-% ========= Encabezado APA =========
+% ==================== ENCABEZADO APA ====================
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[R]{\thepage}
+\fancyhead[R]{\thepage}              % Número de página a la derecha arriba
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Espaciado visual del título de capítulo
-\titlespacing*{\chapter}{0pt}{-30pt}{30pt} % Ajusta -10pt según gusto visual
+% Aplica fancy en lugar de plain (índice, capítulos, etc.)
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
 
 % ================= DOCUMENTO =================
 \begin{document}
@@ -118,31 +133,33 @@
 
 % ============ ÍNDICE =============
 \newpage
-\thispagestyle{empty}
-\renewcommand{\cftchapdotsep}{\cftdotsep}
+\pagenumbering{roman}
+\vspace*{-2cm} % ← Esto reduce el espacio antes del título
 \renewcommand{\contentsname}{ÍNDICE}
-\renewcommand{\cfttoctitlefont}{\large\bfseries}
+\renewcommand{\cfttoctitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
 \tableofcontents
 
 % ============ ÍNDICE DE TABLAS =============
 \newpage
-\thispagestyle{empty}
+\vspace*{-2cm}
 \renewcommand{\listtablename}{ÍNDICE DE TABLAS}
-\renewcommand{\cftlottitlefont}{\large\bfseries}
+\renewcommand{\cftlottitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
 \renewcommand{\cfttabdotsep}{\cftdotsep}
 \listoftables
 
-% ============ ÍNDICE DE IMÁGENES =============
+% ============ ÍNDICE DE FIGURAS =============
 \newpage
-\thispagestyle{empty}
-\renewcommand{\listfigurename}{ÍNDICE DE IMÁGENES}
-\renewcommand{\cftloftitlefont}{\large\bfseries}
+\vspace*{-2cm}
+\renewcommand{\listfigurename}{ÍNDICE DE FIGURAS}
+\renewcommand{\cftloftitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
 \renewcommand{\cftfigdotsep}{\cftdotsep}
 \listoffigures
 
 % ============ RESUMEN Y ABSTRACT ============
 \newpage
-\pagenumbering{roman} % ← Numeración romana (i, ii, iii)
 \section*{Resumen}
 \lipsum[1]
 
@@ -171,7 +188,7 @@
 % Si quieres que "INTRODUCCIÓN" esté centrado y en el índice:
 \section*{}
 \begin{center}
-	\large \textbf{INTRODUCCIÓN}
+	\normalsize \textbf{INTRODUCCIÓN}
 \end{center}
 \addcontentsline{toc}{section}{Introducción}
 
