@@ -25,10 +25,10 @@
 % Márgenes y espaciado según APA (ajusta left=30mm si tu universidad lo exige)
 \geometry{
     letterpaper,
-    left=25mm,
-    right=25mm,
-    top=25mm,
-    bottom=25mm,
+    left=30mm, % Recomendado si es para empastado físico (consulta si es necesario)
+    right=25.4mm,
+    top=25.4mm,
+    bottom=25.4mm,
     headsep=10mm
 }
 \setlength{\headheight}{15pt}
@@ -87,8 +87,11 @@
 
 % ============ PORTADA =============
 \thispagestyle{empty}
+\begingroup
+\setstretch{1.15}
 \begin{center}
-	\large\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS} \\
+	\Large\textbf{UNIVERSIDAD MAYOR DE SAN ANDRÉS} \\
+    \vspace{0.5cm}
 	\large\textbf{FACULTAD DE CIENCIAS PURAS Y NATURALES} \\
 	\large\textbf{POSTGRADO EN INFORMÁTICA} \\
 	\vspace{0.5cm}
@@ -102,7 +105,7 @@
 	
 	\large\textbf{MONOGRAFÍA DE GRADO} \\
 	\vspace{0.2cm}
-	\normalsize\textbf{MI TÍTULO \\
+	\large\textbf{MI TÍTULO \\
 			SEGUNDA LINEA TITULO} \\
 	\vspace{0.5cm}
 	\textbf{POR:} LIC. TU NOMBRE \\
@@ -111,6 +114,7 @@
 	LA PAZ – BOLIVIA \\
 	Mayo, 2025
 \end{center}
+\endgroup
 
 % ============ ÍNDICE =============
 \newpage
